@@ -132,6 +132,68 @@
                 text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             }
         }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+            border-radius: 0.5rem;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-link {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            overflow: hidden;
+            padding: 0.25rem 0;
+        }
+        
+        .project-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .project-card:hover .project-link::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-5px) rotate(2deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+        
+        .project-card:hover img {
+            animation: float 2s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 min-h-screen flex flex-col">
@@ -173,7 +235,7 @@
                     <!-- 哔哩哔哩 -->
                     <a href="https://space.bilibili.com/36229149" target="_blank" title="哔哩哔哩" class="social-icon bilibili-icon text-gray-600">
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906L17.813 4.653zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z" />
+                            <path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906L17.813 4.653zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773H5.333zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z" />
                         </svg>
                     </a>
                     
@@ -475,6 +537,162 @@
                     
                     <h5 class="font-semibold">技术面状态</h5>
                     <p>当前比特币处于中性技术形态，在经历1月历史高点后进入调整期。不同时间周期的指标存在分歧，短周期呈现超卖特征。支撑位与阻力位形成明确的价格通道。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 比特币生态项目 -->
+        <section class="mb-10">
+            <h3 class="text-xl font-bold mb-6 flex items-center">
+                <i class="fas fa-project-diagram text-blue-600 mr-2"></i>
+                比特币生态项目
+            </h3>
+            
+            <div class="border border-gray-200 rounded-lg p-6 bg-white shadow-sm crypto-card">
+                <p class="text-gray-700 mb-4">以下是比特币生态中的主要项目，这些项目都已上线币安和BitGet交易所，为比特币提供了扩展功能和应用场景。</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <!-- Stacks STX -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-500 to-orange-500 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-layer-group text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">Stacks (STX)</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币Layer1智能合约解决方案，是第一个被SEC认可的区块链项目，允许在比特币上构建去中心化应用。</p>
+                        <a href="https://www.stacks.co/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- Ordinals ORDI -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-orange-500 to-red-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-fingerprint text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">Ordinals (ORDI)</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币原生铭文协议代币，允许在比特币上直接铸造NFT和BRC-20代币，是BTC生态爆发的关键推动力。</p>
+                        <a href="https://www.ordinalsbot.com/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- Lightning Network -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-yellow-400 to-yellow-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-bolt text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">Lightning Network (LN)</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币Layer2扩容协议，通过创建支付通道实现即时、低成本的比特币交易，大幅提升BTC的交易速度和扩展性。</p>
+                        <a href="https://lightning.network/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- SATS -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-amber-400 to-amber-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-coins text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">SATS</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币的最小单位"聪"的代币化表示，是基于BRC-20标准发行的热门代币，代表比特币细分单位的价值。</p>
+                        <a href="https://www.sats.id/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- Runes -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-emerald-400 to-teal-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-scroll text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">Runes (符文)</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币原生符文协议，更高效的代币发行标准，由比特币核心开发者Casey Rodarmor设计，减少网络资源占用。</p>
+                        <a href="https://www.runebtc.xyz/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- RGB Protocol -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-red-400 to-green-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-palette text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">RGB Protocol</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币上的智能合约协议，允许在不修改比特币核心代码的情况下发行资产和执行复杂的合约逻辑，注重隐私性。</p>
+                        <a href="https://rgb.tech/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- Rootstock RSK -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-indigo-400 to-indigo-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-sitemap text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">Rootstock (RSK)</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币侧链，提供智能合约功能并兼容以太坊虚拟机(EVM)，实现BTC与智能合约的结合，支持DeFi应用开发。</p>
+                        <a href="https://rootstock.io/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- BitVM -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-blue-400 to-cyan-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-microchip text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">BitVM</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币虚拟机技术，使用欺诈证明机制，允许在比特币上执行复杂计算而无需修改比特币协议，扩展比特币功能。</p>
+                        <a href="https://bitvm.org/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+
+                    <!-- Atomicals ARC-20 -->
+                    <div class="border border-gray-200 rounded-lg p-4 transition-all duration-300 hover:shadow-lg hover:border-blue-300 hover:-translate-y-1 project-card group">
+                        <div class="flex items-center mb-3">
+                            <div class="w-10 h-10 mr-3 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-400 to-pink-600 shadow-md transform group-hover:rotate-12 transition-all duration-300">
+                                <i class="fas fa-atom text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-bold group-hover:text-blue-600 transition-colors">Atomicals (ATOM)</h4>
+                        </div>
+                        <p class="text-sm text-gray-600 mb-3">比特币上的原子协议，使用UTXO模型实现数字资产的铸造和转移，ARC-20是其代币标准，更有效降低了链上负担。</p>
+                        <a href="https://atomicals.xyz/" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm flex items-center project-link">
+                            <i class="fas fa-external-link-alt mr-1"></i> 官方网站
+                            <i class="fas fa-arrow-right ml-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                    <p class="text-sm flex items-start">
+                        <i class="fas fa-info-circle text-blue-600 mt-1 mr-2 animate-pulse"></i>
+                        <span>以上项目均已在币安(Binance)和BitGet交易所上线，投资者可以通过这些交易所进行交易。在投资前请务必了解项目特性、风险，并进行充分的研究。</span>
+                    </p>
                 </div>
             </div>
         </section>
